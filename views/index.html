@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app="todo">
+  <head>
+    <title>Angularjs</title>
+    <meta name="description" content="Angularjs test">
+    <link id="favicon" rel="icon" href="https://gomix.com/favicon-app.ico" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+  </head>
+  <body>
+
+    <div ng-controller="todoController as todolist">
+      
+      <strong>{{todolist.remaining()}} of {{todolist.todos.length}}</strong>      
+      
+      <ul class="todolist">
+        <li class="todolist__todo" ng-repeat="todo in todolist.todos">
+          <input type="checkbox" ng-model="todo.done" id="todo-{{$index}}">
+          <label class="todolist__todo__label" for="todo-{{$index}}" ng-class="{'label-done': todo.done}">{{ todo.message }}</label>
+          <button ng-click="todolist.removeTodo($index)">X</button>
+        </li>
+      </ul>
+      
+      <div class="todo-text">
+        <input type="text" ng-model="todolist.todoText" placeholder="Type in text for todo">
+        <button ng-click="todolist.addTodo()">Add todo</button>
+      </div>
+      
+    </div>
+
+    <script src="/client.js"></script>
+
+  </body>
+</html>
